@@ -11,4 +11,8 @@ class Student < ActiveRecord::Base
 		end
 		completedList
 	end
+
+	def updateProgress lession_id, content_id
+		completed_lessons.create!(lesson_id: lesson_id, content_id: content_id, completion_date: DateTime.now)
+	end
 end

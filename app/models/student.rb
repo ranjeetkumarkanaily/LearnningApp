@@ -6,13 +6,14 @@ class Student < ActiveRecord::Base
 
 	def progress
 		completedList = []
-		completed_lessons.each_with_index do |cl, i|
-			completedList << "L#{cl.lesson_id} P#{i+1}"
+		completed_lessons.each do |cl|
+			# completedList << "L#{cl.lesson_id} P#{i+1}"
+			completedList << cl.content
 		end
 		completedList
 	end
 
-	def updateProgress lession_id, content_id
+	def updateProgress lesson_id, content_id
 		completed_lessons.create!(lesson_id: lesson_id, content_id: content_id, completion_date: DateTime.now)
 	end
 end
